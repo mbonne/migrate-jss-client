@@ -53,7 +53,7 @@ heading_pre="Self Service will now be upgraded."
 # during interactive/Self Service use of this script
 heading_post="Self Service upgrade complete."
 # UI main body message show before migration
-body_pre="Self Service will automatically close to complete the ugprade. This should take about 5 minutes. Please do not open Self Service until you receive a notification that the ugprade is complete."
+body_pre="Self Service will automatically close to complete the upgrade. This should take about 5 minutes. Please do not open Self Service until you receive a notification that the upgrade is complete."
 # UI main body for message shown after migration
 body_post="Self Service has been successfully upgraded. You may now re-open Self Service to access software installations and maintenance utilities. Please contact ITS if you need additional assistance."
 

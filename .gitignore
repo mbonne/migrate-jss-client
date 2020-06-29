@@ -3,3 +3,4 @@
 
 # our build directory
 build/
+.vscode/settings.json
