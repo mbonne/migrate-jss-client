@@ -1,26 +1,12 @@
 # Migrate JSS Client(s)
 
-A tool to move clients from one JSS to another.
+A tool to move macOS Devices from one JSS to another.
 
-## Why?
+## Purpose
 
-Our organization had a need to migrate clients from an old, on-premise JSS to a
-cloud-hosted instance. Since this migration requires more than a simple DNS
-update to reflect a new hostname, we have to actually unenroll the clients from
-the on-premise JSS, then enroll them to our cloud instance. Sounds like manual
-work. Icky.
-
-To complicate matters, we rely on MDM to manage devices. While pushing a new
-QuickAdd package to clients on the on-premise instance would mostly handle the
-migration, this leaves computers in a non-MDM-manageable state on the new
-instance. No bueno.
-
-So we have to completely unenroll the device from `$old_JSS` and then enroll it
-to `$new_JSS` as a two-step procedure.
-
-This solution allows us to automate the process or provide it as a Self Service
-item for our users. After completion, the device is enrolled in the new JSS,
-correctly managed, and totally ready for some MDM love.
+Migrate macOS devices from on-prem JSS to cloud-hosted instance.
+Since this migration requires more than a simple DNS update to target a new JSS Server.
+Devices need to unenroll from the on-prem JSS, then enrol to cloud instance.
 
 ## How?
 
@@ -37,6 +23,7 @@ LaunchDaemon for you – installing the package effectively begins the migration
 
 ## What does the script do?
 
+- Installs wifi profile to connect devices to a staging SSID.
 - Alerts the user, if running in "interactive" mode.
 - Closes _Self Service_ if it's open.
 - Attempts to remove the MDM profile using the `jamf` binary. If this fails,
@@ -50,9 +37,8 @@ LaunchDaemon for you – installing the package effectively begins the migration
 - Unloads and deletes the LaunchDaemon.
 - Alerts the user the process is complete, if running in "interactive" mode.
 - Self-destructs to leave no trace.
-- Pours you a refreshing beverage of your choice 🍻
 
-...oh. And it also records all this to a log. More on that later.
+- Records to log
 
 ## Requirements
 
@@ -108,6 +94,11 @@ some require detailed explanation.
 The URL of your **OLD** JSS. This is your current JSS to which the clients you
 are moving are currently enrolled.
 
+To store the URL of current server at time of script run: 
+`/usr/local/bin/jamf checkJSSConnection | head -1 | awk '{print $4}' | sed "s/...$//"`
+
+Might be dangerous to use this here instead of explicitly specifying url. Used here for testing purposes only.
+
 ###### `new_jss_url`
 The URL of your **NEW** JSS. This is your "destination" JSS to which the
 clients will be enrolled at the completion of the migration.
@@ -158,9 +149,4 @@ review.
 
 ###### UI Options
 
-I feel each is adequately documented and explained within the script; no use
-rehashing them here.
 
-## Recommendations
-
-TODO
