@@ -94,10 +94,10 @@ some require detailed explanation.
 The URL of your **OLD** JSS. This is your current JSS to which the clients you
 are moving are currently enrolled.
 
-To stor the URL of current server at time of script run: 
+To store the URL of current server at time of script run: 
 `/usr/local/bin/jamf checkJSSConnection | head -1 | awk '{print $4}' | sed "s/...$//"`
 
-Might be dangerous to use this here. But used here for testing purposes only.
+Might be dangerous to use this here instead of explicitly specifying url. Used here for testing purposes only.
 
 ###### `new_jss_url`
 The URL of your **NEW** JSS. This is your "destination" JSS to which the
@@ -149,9 +149,4 @@ review.
 
 ###### UI Options
 
-I feel each is adequately documented and explained within the script; no use
-rehashing them here.
 
-## Recommendations
-
-TODO
