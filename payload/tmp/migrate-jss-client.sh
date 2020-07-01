@@ -5,7 +5,7 @@
 ###############################################################################
 
 # JSS URLs
-old_jss_url="https://old.jss.url"
+old_jss_url="$(/usr/local/bin/jamf checkJSSConnection | head -1 | awk '{print $4}' | sed "s/...$//")" #"https://old.jss.url"
 new_jss_url="https://new.jss.url"
 
 # Run mode
